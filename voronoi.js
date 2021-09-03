@@ -11,6 +11,8 @@ var drawIncrement;
 var drawMax;
 var stop = false;
 var isPainting = false;
+var hue = 360*Math.random();
+const hueIncrement = 180 * (5**0.5 - 1);
 
 var bowyerWatson;
 
@@ -67,11 +69,18 @@ function newPoints() {
 	let n = parseInt(regions.value || 10);
 	bowyerWatson = new BowyerWatson();
 	for (let i=0; i<n; i++) {
-		let point = [Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height)];
-		point.color="hsl("+Math.floor(360*Math.random())+",70%,55%)";
-		bowyerWatson.addPoint(point);
+		createPoint(Math.floor(Math.random()*canvas.width), Math.floor(Math.random()*canvas.height));
 	}
 	newpaint();
+}
+
+function createPoint(x, y) {
+	let point = [x,y];
+	point.color = ctx.createRadialGradient(x,y,0,x,y,600);
+	let currentHue = (hue += hueIncrement);
+	point.color.addColorStop(0, "hsl("+currentHue+",70%,65%)");
+	point.color.addColorStop(1, "hsl("+currentHue+",70%,25%)");
+	return bowyerWatson.addPoint(point);
 }
 
 function drawSpeed() {
@@ -101,10 +110,8 @@ function stopRedraw() {
 }
 
 function canvasClick(event) {
-	stop = false;
-	let point = [event.x, event.y];
-	point.color = point.color="hsl("+Math.floor(360*Math.random())+",70%,55%)";
-	if (bowyerWatson.addPoint(point) != -1) {
+	if (createPoint(Math.floor(event.x * dpr), Math.floor(event.y * dpr)) != -1) {
+		stop = false;
 		drawRadius = 0;
 		requestPaint();
 	}

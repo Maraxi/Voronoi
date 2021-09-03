@@ -5,12 +5,23 @@
 	--transparent_white: rgba(255 255 255 / 0.6);
 	--white: #fff;
 	--transparent_black: rgba(0 0 0 / 0.8);
+	font-size: 1.2em;
 }
 
 body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+}
+
+span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 30%;
+	translate: -50% -50%;
+	text-align: center;
+	font-weight: bold;
 }
 
 canvas {
