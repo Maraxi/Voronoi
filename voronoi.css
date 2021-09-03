@@ -1,0 +1,117 @@
+:root {
+	--blue: #3584e4;
+	--cream: #f4d9be;
+	--cream: hsl(30,70%,85%);
+	--transparent_white: rgba(255 255 255 / 0.6);
+	--white: #fff;
+	--transparent_black: rgba(0 0 0 / 0.8);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+canvas {
+	background: var(--cream);
+	height: 100vh;
+	width: 100vw;
+}
+
+header {
+	background-color: var(--transparent_white);
+	backdrop-filter: blur(7px);
+
+	position: absolute;
+	top: 1em;
+	left: 50%;
+	transform: translate(-50%);
+	width: max-content;
+
+	padding: 0.5em 1em;
+	border-radius: 0.3em;
+}
+
+#regionCount {
+	width: 4em;
+}
+
+input {
+	accent-color: var(--blue);
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	gap: 0.4em 0.5em;
+}
+
+fieldset {
+	align-self: stretch;
+}
+
+#speed {
+	margin: 0;
+}
+
+#redraw {
+	grid-area: b1;
+}
+
+#stop {
+	grid-area: b2;
+}
+
+.help {
+	background-color: var(--blue);
+	color: var(--white);
+	width: 1.5em;
+	height: 1.5em;
+	text-align: center;
+	font-weight: bold;
+	cursor: help;
+	border-radius: 50%;
+	line-height: 1.5em;
+	grid-area: qm;
+}
+
+form > div {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	gap: 3px;
+	grid-template-areas: "b1 b2 qm";
+}
+
+@media (min-width: 40em) {
+	form {
+		flex-direction: row;
+	}
+
+	form > div {
+		grid-template-areas: "b1 qm" "b2 qm";
+	}
+}
+
+@media (min-width: 50em) {
+	form > div {
+		grid-template-areas: "b1 b2 qm";
+	}
+}
+
+@media (pointer: coarse), (hover: none) {
+	[title]:focus::after {
+		content: attr(title);
+		position: absolute;
+		top: 90%;
+		color: var(--white);
+		background-color: var(--transparent_black);
+		width: fit-content;
+		padding: 3px;
+		border-radius: 3px;
+	}
+}
+

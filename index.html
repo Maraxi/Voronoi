@@ -1,1 +1,37 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="author" content="Stefan Eysoldt">
+		<meta name="description" content="Visualization of Voronoi cells">
+		<title>Voronoi Cells</title>
+		<link rel="icon" href="/favicon-32.png" sizes="32x32">
+		<link rel="icon" href="/favicon-128.png" sizes="128x128">
+		<link rel="icon" href="/favicon-180.png" sizes="180x180">
+		<link rel="icon" href="/favicon-192.png" sizes="192x192">
+		<link rel="stylesheet" type="text/css" href="voronoi.css">
+		<script type="text/javascript" src="bowyer-watson.js" defer> </script>
+		<script type="text/javascript" src="voronoi.js" defer> </script>
+	</head>
+	<body>
+		<header>
+			<form onsubmit="return false">
+				<fieldset>
+					<legend>Regions</legend>
+					<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
+					<input type="submit" value="Generate new points" onclick="newPoints()">
+				</fieldset>
+				<fieldset>
+					<legend>Draw speed</legend>
+					<input id="speed" type="range" min=1 max=11 value=4 onchange="drawSpeed()">
+				</fieldset>
+				<div>
+					<input id="redraw" type="submit" value="Redraw Diagram" onclick="newpaint()">
+					<input id="stop" type="submit" value="Stop Drawing" onclick="stopRedraw()">
+					<div class="help" title="Click the canvas to add a new point and interrupt the drawing of other cells until the new cell has catched up">?</div>
+				</div>
+			</form>
+		</header>
+		<canvas id="voronoiCells" width=1920 height=1080 onmousedown="canvasClick(event)"></canvas>
+	</body>
+</html>
