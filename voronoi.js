@@ -27,7 +27,7 @@ function setupCanvas() {
 	drawMax = 1.5*Math.max(canvas.width, canvas.height);
 }
 
-function draw() {
+function draw(timestamp) {
 	drawRadius += drawIncrement;
 	for (var cell of bowyerWatson.points) fillRegion(cell);
 	if (drawRadius < drawMax && !stop) {
@@ -76,10 +76,11 @@ function newPoints() {
 
 function createPoint(x, y) {
 	let point = [x,y];
-	point.color = ctx.createRadialGradient(x,y,0,x,y,600);
+	point.color = ctx.createRadialGradient(x,y,0,x,y,drawMax/5);
 	let currentHue = (hue += hueIncrement);
 	point.color.addColorStop(0, "hsl("+currentHue+",70%,65%)");
-	point.color.addColorStop(1, "hsl("+currentHue+",70%,25%)");
+	let otherHue = currentHue + 40;
+	point.color.addColorStop(1, "hsl("+otherHue+",70%,40%)");
 	return bowyerWatson.addPoint(point);
 }
 
@@ -110,6 +111,9 @@ function stopRedraw() {
 }
 
 function canvasClick(event) {
+	if (event.button != 0) {
+		return;
+	}
 	if (createPoint(Math.floor(event.x * dpr), Math.floor(event.y * dpr)) != -1) {
 		stop = false;
 		drawRadius = 0;

@@ -24,12 +24,15 @@
 				</fieldset>
 				<fieldset>
 					<legend>Draw speed</legend>
-					<input id="speed" type="range" min=1 max=11 value=4 onchange="drawSpeed()">
+					<input id="speed" type="range" min=1 max=11 value=3 onchange="drawSpeed()">
 				</fieldset>
 				<div>
 					<input id="redraw" type="submit" value="Redraw Diagram" onclick="newpaint()">
 					<input id="stop" type="submit" value="Stop Drawing" onclick="stopRedraw()">
-					<div class="help" title="Click the canvas to add a new point and interrupt the drawing of other cells until the new cell has catched up">?</div>
+					<div class="help">
+						<p>?</p>
+						<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
+					</div>
 				</div>
 			</form>
 		</header>
