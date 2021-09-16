@@ -27,6 +27,11 @@ header {
 	width: max-content;
 
 	padding: 0.5em 1em;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	gap: 0.4em 0.5em;
 }
 
 header,
@@ -42,14 +47,6 @@ header,
 
 input {
 	accent-color: var(--blue);
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-	justify-items: center;
-	align-items: center;
-	gap: 0.4em 0.5em;
 }
 
 fieldset {
@@ -101,7 +98,7 @@ fieldset {
 	visibility: visible;
 }
 
-form > div {
+header > div {
 	display: grid;
 	align-items: center;
 	justify-items: center;
@@ -110,11 +107,11 @@ form > div {
 }
 
 @media (min-width: 40em) {
-	form {
+	header {
 		flex-direction: row;
 	}
 
-	form > div {
+	header > div {
 		grid-template-areas: "b1 qm" "b2 qm";
 	}
 
@@ -124,7 +121,7 @@ form > div {
 }
 
 @media (min-width: 50em) {
-	form > div {
+	header > div {
 		grid-template-areas: "b1 b2 qm";
 	}
 }

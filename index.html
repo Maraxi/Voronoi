@@ -16,25 +16,23 @@
 	</head>
 	<body>
 		<header>
-			<form onsubmit="return false">
-				<fieldset>
-					<legend>Regions</legend>
-					<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
-					<input type="submit" value="Generate new points" onclick="newPoints()">
-				</fieldset>
-				<fieldset>
-					<legend>Draw speed</legend>
-					<input id="speed" type="range" min=1 max=11 value=3 onchange="drawSpeed()">
-				</fieldset>
-				<div>
-					<input id="redraw" type="submit" value="Redraw Diagram" onclick="newpaint()">
-					<input id="stop" type="submit" value="Stop Drawing" onclick="stopRedraw()">
-					<div class="help">
-						<p>?</p>
-						<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
-					</div>
+			<fieldset>
+				<legend>Regions</legend>
+				<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
+				<input type="submit" value="Generate new points" onclick="newPoints()">
+			</fieldset>
+			<fieldset>
+				<legend>Draw speed</legend>
+				<input id="speed" type="range" min=1 max=11 value=3 onchange="drawSpeed()">
+			</fieldset>
+			<div>
+				<input id="redraw" type="submit" value="Redraw Diagram" onclick="newpaint()">
+				<input id="stop" type="submit" value="Stop Drawing" onclick="stopRedraw()">
+				<div class="help">
+					<p>?</p>
+					<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
 				</div>
-			</form>
+			</div>
 		</header>
 		<canvas id="voronoiCells" width=1920 height=1080 onmousedown="canvasClick(event)"></canvas>
 		<noscript>Javascript is required to draw the Voronoi diagram</noscript>
