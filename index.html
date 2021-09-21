@@ -15,21 +15,24 @@
 	</head>
 	<body>
 		<header>
-			<fieldset>
-				<legend>Regions</legend>
-				<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
-				<input id="generate" type="submit" value="Generate new points">
-			</fieldset>
-			<fieldset>
-				<legend>Draw speed</legend>
-				<input id="speed" type="range" min=1 max=11 value=3>
-			</fieldset>
-			<div>
-				<input id="redraw" type="submit" value="Redraw Diagram">
-				<input id="stop" type="submit" value="Stop Drawing">
-				<div class="help">
-					<p>?</p>
-					<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
+			<h1>Voronoi diagram</h1>
+			<div id="controls">
+				<fieldset>
+					<legend>Regions</legend>
+					<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
+					<input id="generate" type="submit" value="Generate new points">
+				</fieldset>
+				<fieldset>
+					<legend>Draw speed</legend>
+					<input id="speed" type="range" min=1 max=11 value=3>
+				</fieldset>
+				<div id="btnGrid">
+					<input id="redraw" type="submit" value="Redraw Diagram">
+					<input id="stop" type="submit" value="Stop Drawing">
+					<div class="help">
+						<p>?</p>
+						<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
+					</div>
 				</div>
 			</div>
 		</header>

@@ -25,6 +25,14 @@ header {
   transform: translate(-50%);
   width: max-content;
   padding: 0.5em 1em;
+}
+
+h1 {
+  margin: 0 0 0.25em 0;
+  text-align: center;
+}
+
+#controls {
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -95,7 +103,7 @@ fieldset {
   visibility: visible;
 }
 
-header > div {
+#btnGrid {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -104,11 +112,11 @@ header > div {
 }
 
 @media (min-width: 40em) {
-  header {
+  #controls {
     flex-direction: row;
   }
 
-  header > div {
+  #btnGrid {
     grid-template-areas: "b1 qm" "b2 qm";
   }
 
@@ -118,7 +126,7 @@ header > div {
 }
 
 @media (min-width: 50em) {
-  header > div {
+  #btnGrid {
     grid-template-areas: "b1 b2 qm";
   }
 }

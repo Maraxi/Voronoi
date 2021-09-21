@@ -38,7 +38,7 @@ function setupCanvas () {
 
 function draw (timestamp) {
   if (start === false) {
-    return;
+    return
   } else if (start === true) {
     start = timestamp
   }
@@ -93,7 +93,7 @@ function createPoint (x, y) {
   point.color = ctx.createRadialGradient(x, y, 0, x, y, outerRadius)
   point.color.addColorStop(0, '#222')
   point.color.addColorStop(innerProportion, '#222')
-  point.color.addColorStop(1.25*innerProportion, 'hsl(' + currentHue + ',70%,65%)')
+  point.color.addColorStop(1.25 * innerProportion, 'hsl(' + currentHue + ',70%,65%)')
   point.color.addColorStop(1, 'hsl(' + (currentHue + 40) + ',70%,40%)')
   return bowyerWatson.addPoint(point)
 }
@@ -104,8 +104,8 @@ function drawSpeed () {
     newSpeed = 1000 * Math.max(canvas.width, canvas.height)
   }
   newSpeed *= dpr * drawSpeedFactor
-  if (typeof(start) === 'number') {
-    start += drawRadius * ( 1 / drawIncrement - 1 / newSpeed )
+  if (typeof (start) === 'number') {
+    start += drawRadius * (1 / drawIncrement - 1 / newSpeed)
   }
   drawIncrement = newSpeed
 }
