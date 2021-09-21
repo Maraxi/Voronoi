@@ -11,30 +11,29 @@
 		<link rel="icon" href="favicon-180.png" sizes="180x180">
 		<link rel="icon" href="favicon-192.png" sizes="192x192">
 		<link rel="stylesheet" type="text/css" href="voronoi.css">
-		<script type="text/javascript" src="bowyer-watson.js" defer> </script>
-		<script type="text/javascript" src="voronoi.js" defer> </script>
+		<script type="module" src="voronoi.js" defer> </script>
 	</head>
 	<body>
 		<header>
 			<fieldset>
 				<legend>Regions</legend>
 				<input id="regionCount" type="number" min=0 placeholder=10 value=10 required>
-				<input type="submit" value="Generate new points" onclick="newPoints()">
+				<input id="generate" type="submit" value="Generate new points">
 			</fieldset>
 			<fieldset>
 				<legend>Draw speed</legend>
-				<input id="speed" type="range" min=1 max=11 value=3 onchange="drawSpeed()">
+				<input id="speed" type="range" min=1 max=11 value=3>
 			</fieldset>
 			<div>
-				<input id="redraw" type="submit" value="Redraw Diagram" onclick="newpaint()">
-				<input id="stop" type="submit" value="Stop Drawing" onclick="stopRedraw()">
+				<input id="redraw" type="submit" value="Redraw Diagram">
+				<input id="stop" type="submit" value="Stop Drawing">
 				<div class="help">
 					<p>?</p>
 					<span>Click the canvas to create a new point. The other cells interrupt their expansion until the new cell catches up.</span>
 				</div>
 			</div>
 		</header>
-		<canvas id="voronoiCells" width=1920 height=1080 onmousedown="canvasClick(event)"></canvas>
+		<canvas id="voronoiCells" width=1920 height=1080></canvas>
 		<noscript>Javascript is required to draw the Voronoi diagram</noscript>
 	</body>
 </html>
