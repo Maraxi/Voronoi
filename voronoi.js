@@ -3,16 +3,18 @@ import BowyerWatson from './bowyer-watson.js'
 
 const dpr = window.devicePixelRatio || 1
 const canvas = document.getElementById('voronoiCells')
-canvas.addEventListener('mousedown', canvasClick)
 const regions = document.getElementById('regionCount')
 const generate = document.getElementById('generate')
-generate.addEventListener('click', newPoints)
 const speed = document.getElementById('speed')
-speed.addEventListener('change', drawSpeed)
 const redrawBtn = document.getElementById('redraw')
-redrawBtn.addEventListener('click', newpaint)
 const stopBtn = document.getElementById('stop')
+canvas.addEventListener('mousedown', canvasClick)
+generate.addEventListener('click', newPoints)
+speed.addEventListener('change', drawSpeed)
+redrawBtn.addEventListener('click', newpaint)
 stopBtn.addEventListener('click', stopRedraw)
+
+let bowyerWatson
 let ctx
 
 let drawRadius
@@ -22,8 +24,6 @@ let stop = false
 let isPainting = false
 let hue = 360 * Math.random()
 const hueIncrement = 180 * (5 ** 0.5 - 1)
-
-let bowyerWatson
 
 function setupCanvas () {
   const rect = canvas.getBoundingClientRect()
@@ -60,11 +60,6 @@ function fillRegion (region) {
   ctx.clip()
 
   ctx.beginPath()
-  ctx.fillStyle = '#222'
-  ctx.arc(region[0], region[1], 3 * dpr, 0, 2 * Math.PI)
-  ctx.fill()
-
-  ctx.beginPath()
   for (const [x, y] of region.corners) ctx.lineTo(x, y)
   ctx.closePath()
   ctx.stroke()
@@ -85,18 +80,22 @@ function newPoints () {
 
 function createPoint (x, y) {
   const point = [x, y]
-  point.color = ctx.createRadialGradient(x, y, 0, x, y, drawMax / 5)
+  const outerRadius = drawMax / 5
+  const innerProportion = 3 * dpr / outerRadius
   const currentHue = (hue += hueIncrement)
-  point.color.addColorStop(0, 'hsl(' + currentHue + ',70%,65%)')
-  const otherHue = currentHue + 40
-  point.color.addColorStop(1, 'hsl(' + otherHue + ',70%,40%)')
+
+  point.color = ctx.createRadialGradient(x, y, 0, x, y, outerRadius)
+  point.color.addColorStop(0, '#222')
+  point.color.addColorStop(innerProportion, '#222')
+  point.color.addColorStop(1.25*innerProportion, 'hsl(' + currentHue + ',70%,65%)')
+  point.color.addColorStop(1, 'hsl(' + (currentHue + 40) + ',70%,40%)')
   return bowyerWatson.addPoint(point)
 }
 
 function drawSpeed () {
   drawIncrement = parseInt(speed.value)
   if (drawIncrement === 11) {
-    drawIncrement = 2000
+    drawIncrement = Math.max(canvas.width, canvas.height)
   }
   drawIncrement *= dpr
 }
