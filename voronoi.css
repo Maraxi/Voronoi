@@ -1,141 +1,137 @@
 :root {
-	--blue: #3584e4;
-	--cream: #f4d9be;
-	--cream: hsl(30,70%,85%);
-	--transparent_white: rgba(255 255 255 / 0.6);
-	--white: #fff;
-	--transparent_black: rgba(0 0 0 / 0.8);
+  --blue: #3584e4;
+  --cream: hsl(30, 70%, 85%);
+  --transparent_white: rgba(255 255 255 / 0.6);
+  --white: #fff;
+  --transparent_black: rgba(0 0 0 / 0.8);
 }
 
 body {
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 canvas {
-	background: var(--cream);
-	height: 100vh;
-	width: 100vw;
+  background: var(--cream);
+  height: 100vh;
+  width: 100vw;
 }
 
 header {
-	position: absolute;
-	top: 1em;
-	left: 50%;
-	transform: translate(-50%);
-	width: max-content;
-
-	padding: 0.5em 1em;
-	display: flex;
-	flex-direction: column;
-	justify-items: center;
-	align-items: center;
-	gap: 0.4em 0.5em;
+  position: absolute;
+  top: 1em;
+  left: 50%;
+  transform: translate(-50%);
+  width: max-content;
+  padding: 0.5em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 0.4em 0.5em;
 }
 
 header,
 .help span {
-	background-color: var(--transparent_white);
-	backdrop-filter: blur(7px);
-	border-radius: 0.3em;
+  background-color: var(--transparent_white);
+  backdrop-filter: blur(7px);
+  border-radius: 0.3em;
 }
 
 #regionCount {
-	width: 4em;
+  width: 4em;
 }
 
 input {
-	accent-color: var(--blue);
+  accent-color: var(--blue);
 }
 
 fieldset {
-	align-self: stretch;
+  align-self: stretch;
 }
 
 #speed {
-	margin: 0;
+  margin: 0;
 }
 
 #redraw {
-	grid-area: b1;
+  grid-area: b1;
 }
 
 #stop {
-	grid-area: b2;
+  grid-area: b2;
 }
 
 .help {
-	background-color: var(--blue);
-	width: 1.5em;
-	height: 1.5em;
-	text-align: center;
-	cursor: help;
-	border-radius: 50%;
-	grid-area: qm;
+  background-color: var(--blue);
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  cursor: help;
+  border-radius: 50%;
+  grid-area: qm;
 }
 
 .help p {
-	color: var(--white);
-	font-weight: bold;
-	line-height: 1.5em;
-	margin: 0;
+  color: var(--white);
+  font-weight: bold;
+  line-height: 1.5em;
+  margin: 0;
 }
 
 .help span {
-	visibility: hidden;
-	
-	position: absolute;
-	left: 0.5em;
-	right: 0.5em;
-	margin-top: 0.8em;
-	padding: 0.5em;
+  visibility: hidden;
+  position: absolute;
+  left: 0.5em;
+  right: 0.5em;
+  margin-top: 0.8em;
+  padding: 0.5em;
 }
 
 .help:hover span,
 .help:focus span,
 .help:active span {
-	visibility: visible;
+  visibility: visible;
 }
 
 header > div {
-	display: grid;
-	align-items: center;
-	justify-items: center;
-	gap: 3px;
-	grid-template-areas: "b1 b2 qm";
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+  grid-template-areas: "b1 b2 qm";
 }
 
 @media (min-width: 40em) {
-	header {
-		flex-direction: row;
-	}
+  header {
+    flex-direction: row;
+  }
 
-	header > div {
-		grid-template-areas: "b1 qm" "b2 qm";
-	}
+  header > div {
+    grid-template-areas: "b1 qm" "b2 qm";
+  }
 
-	.help span {
-		margin-top: 2em;
-	}
+  .help span {
+    margin-top: 2em;
+  }
 }
 
 @media (min-width: 50em) {
-	header > div {
-		grid-template-areas: "b1 b2 qm";
-	}
+  header > div {
+    grid-template-areas: "b1 b2 qm";
+  }
 }
 
 @media (pointer: coarse), (hover: none) {
-	[title]:focus::after {
-		content: attr(title);
-		position: absolute;
-		top: 90%;
-		color: var(--white);
-		background-color: var(--transparent_black);
-		width: fit-content;
-		padding: 3px;
-		border-radius: 3px;
-	}
+  [title]:focus::after {
+    content: attr(title);
+    position: absolute;
+    top: 90%;
+    color: var(--white);
+    background-color: var(--transparent_black);
+    width: fit-content;
+    padding: 3px;
+    border-radius: 3px;
+  }
 }
-
