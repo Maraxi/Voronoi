@@ -20,10 +20,10 @@ let ctx
 let drawRadius
 let drawIncrement
 let drawMax
-let stop = false
-let isPainting = false
+let start
 let hue = 360 * Math.random()
 const hueIncrement = 180 * (5 ** 0.5 - 1)
+const drawSpeedFactor = 0.03
 
 function setupCanvas () {
   const rect = canvas.getBoundingClientRect()
@@ -37,12 +37,18 @@ function setupCanvas () {
 }
 
 function draw (timestamp) {
-  drawRadius += drawIncrement
+  if (start === false) {
+    return;
+  } else if (start === true) {
+    start = timestamp
+  }
+  console.log(timestamp)
+  drawRadius = drawIncrement * (timestamp - start)
   for (const cell of bowyerWatson.points) fillRegion(cell)
-  if (drawRadius < drawMax && !stop) {
+  if (drawRadius < drawMax) {
     window.requestAnimationFrame(draw)
   } else {
-    isPainting = false
+    stopRedraw()
   }
 }
 
@@ -93,29 +99,31 @@ function createPoint (x, y) {
 }
 
 function drawSpeed () {
-  drawIncrement = parseInt(speed.value)
-  if (drawIncrement === 11) {
-    drawIncrement = Math.max(canvas.width, canvas.height)
+  let newSpeed = parseInt(speed.value)
+  if (newSpeed === 11) {
+    newSpeed = 1000 * Math.max(canvas.width, canvas.height)
   }
-  drawIncrement *= dpr
+  newSpeed *= dpr * drawSpeedFactor
+  if (typeof(start) === 'number') {
+    start += drawRadius * ( 1 / drawIncrement - 1 / newSpeed )
+  }
+  drawIncrement = newSpeed
 }
 
 function newpaint () {
-  drawRadius = 0
-  stop = false
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   requestPaint()
 }
 
 function requestPaint () {
-  if (!isPainting) {
-    isPainting = true
+  if (!start) {
     window.requestAnimationFrame(draw)
   }
+  start = true
 }
 
 function stopRedraw () {
-  stop = true
+  start = false
 }
 
 function canvasClick (event) {
@@ -123,8 +131,6 @@ function canvasClick (event) {
     return
   }
   if (createPoint(Math.floor(event.x * dpr), Math.floor(event.y * dpr)) !== -1) {
-    stop = false
-    drawRadius = 0
     requestPaint()
   }
 }
